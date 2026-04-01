@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk • Instagram</title>
+    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://as1.ftcdn.net/jpg/03/66/39/94/1000_F_366399400_V6fMFluTggIUkSwSvvrg8NH1lIakCCNX.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container { width: 100%; max-width: 350px; z-index: 10; }
+
+        
+        .login-box, .edu-box {
+            background-color: #000000;
+            border: 1px solid #363636;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 20px; 
+            color: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+
+        .login-box { margin-bottom: 12px; }
+
+        .insta-logo {
+            font-family: 'Grand Hotel', cursive;
+            font-size: 50px;
+            color: #ffffff;
+            margin-bottom: 30px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px;
+            background: #121212;
+            border: 1px solid #363636;
+            border-radius: 10px; 
+            outline: none;
+            color: white;
+            font-size: 13px;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #a8a8a8;
+        }
+
+        .login-button {
+            width: 100%;
+            background-color: #0095f6;
+            color: white;
+            border: none;
+            padding: 11px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .login-button:active { transform: scale(0.98); }
+
+        /* BOX BAWAH */
+        .signup-box {
+            background-color: #000000;
+            border: 1px solid #363636;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            border-radius: 15px;
+        }
+
+        .signup-box span { color: #0095f6; font-weight: 600; }
+
+        
+        .footer-warning-box {
+            margin-top: 20px;
+            background-color: rgba(255, 77, 77, 0.15);
+            border: 1px solid #ff4d4d;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-warning-box i { color: #ff4d4d; font-size: 20px; }
+        
+        .footer-warning-text {
+            color: #ff4d4d;
+            font-size: 11px;
+            text-align: left;
+            line-height: 1.4;
+        }
+
+        /* HALAMAN EDUKASI PROFESIONAL */
+        #edu-screen { display: none; }
+        .edu-box { border: 2px solid #FE2C55; }
+        .edu-title { color: #FE2C55; margin-bottom: 20px; font-size: 20px; }
+        
+        .edu-content {
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .highlight-blue { color: #0095f6; font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="login-screen">
+            <div class="login-box">
+                <div class="insta-logo">Instagram</div>
+                
+                <div class="login-form">
+                    <div class="input-wrapper">
+                        <input type="text" id="user-input" placeholder="Nama pengguna atau email" required>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <input type="password" id="pass-input" placeholder="Kata Sandi" required>
+                        <i class="fa-solid fa-eye" id="togglePassword"></i>
+                    </div>
+
+                    <button class="login-button" onclick="showEdu()">Log In</button>
+                </div>
+                
+                <p style="font-size: 12px; color: #b2dffc; margin-top: 20px; cursor: pointer;">Lupa kata sandi?</p>
+            </div>
+
+            <div class="signup-box">
+                Tidak punya akun? <span>Buat akun</span>
+            </div>
+
+            <div class="footer-warning-box">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div class="footer-warning-text">
+                    <strong>SISTEM KEAMANAN:</strong> Halaman ini adalah modul edukasi bahaya phishing. Pastikan selalu memeriksa URL resmi sebelum memasukkan data.
+                </div>
+            </div>
+        </div>
+
+        <div id="edu-screen">
+            <div class="edu-box">
+                <h2 class="edu-title"><i class="fa-solid fa-triangle-exclamation"></i> ANALISIS KEAMANAN</h2>
+                <div class="edu-content">
+                    Halo, <span class="highlight-blue" id="name-tag"></span>.<br><br>
+                    Data yang Anda masukkan tidak disimpan oleh sistem. Ini adalah <strong>Platform Edukasi Keamanan Digital</strong> untuk meningkatkan kewaspadaan terhadap serangan siber.<br><br>
+                    <strong>Mengapa ini berbahaya?</strong><br>
+                    1. <strong>Manipulasi Visual:</strong> Penggunaan tema menarik digunakan untuk menurunkan tingkat kewaspadaan korban.<br>
+                    2. <strong>URL Fraud:</strong> Link yang Anda akses saat ini bukan domain resmi Instagram.<br>
+                    3. <strong>Data Harvesting:</strong> Di dunia nyata, input ini akan langsung terkirim ke server peretas.
+                </div>
+                <button class="login-button" style="background: #333; margin-top: 25px;" onclick="goBack()">Kembali ke Halaman Utama</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       
+        const togglePassword = document.querySelector('#togglePassword');
+        const passwordInput = document.querySelector('#pass-input');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+       
+        function showEdu() {
+            const user = document.getElementById('user-input').value;
+            if(user === "") {
+                alert("Silakan masukkan identitas untuk melanjutkan simulasi.");
+                return;
+            }
+            document.getElementById('name-tag').innerText = user;
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('edu-screen').style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('login-screen').style.display = 'block';
+            document.getElementById('edu-screen').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
